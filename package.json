@@ -1,0 +1,26 @@
+{
+  "name": "weekend-challenge-3",
+  "version": "1.0.0",
+  "description": "Prime Weekend 3 - Node and Express - Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMLarsen/weekend-challenge-3.git"
+  },
+  "author": "Steve Larsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SMLarsen/weekend-challenge-3/issues"
+  },
+  "homepage": "https://github.com/SMLarsen/weekend-challenge-3#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1"
+  }
+}

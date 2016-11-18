@@ -1,0 +1,51 @@
+body {
+  background-color: 	#2E8B57;
+}
+
+#top-container {
+  /*width: 90%;*/
+  margin: 1% auto;
+  padding: 2%;
+}
+
+h1 {
+    color: white;
+}
+
+.input-number, .operator, #clear-btn {
+  /*width: 29%;*/
+  font-weight: bold;
+  font-size: 2em;
+  height: 70px;
+}
+
+.btn-space {
+  /*margin: 5px;*/
+}
+
+#add-btn {
+  /*height: 2em;*/
+  /*width: 8%;*/
+}
+
+#equals-btn {
+  font-weight: bold;
+  font-size: 4em;
+  /*width: 8%;*/
+  /*height: 230px;*/
+}
+
+#result {
+  font-weight: bold;
+  font-size: 2em;
+  height: 90px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  background-color: white;
+  text-align: right;
+  padding: 30px 10px;
+}
+
+#calc-container {
+  background-color: grey
+}
