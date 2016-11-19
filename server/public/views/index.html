@@ -17,27 +17,31 @@
 </head>
 
 <body>
-      <h1>Todo List</h1>
 
-      <form class="addTodo" action="index.html" method="post">
-        <input type="text" name="description" value="Description">
-        <input type="text" id="dueDate" name="dueDate" value="Date Due">
-        <button type="button" id="addButton" name="addButton"><i class="material-icons">add_circle_outline</i></button>
+  <div class="container">
 
-      </form>
+    <h1>Todo List</h1>
 
-      <div class="todos">
-        <ul id="todoList">
-        </ul>
+    <form class="addTodo container" action="index.html" method="post">
+      <input type="text" id="description" name="description" value="Description">
+      <input type="text" id="dueDate" name="dueDate" value="Date Due">
+      <button type="button" id="addButton" name="addButton"><i class="material-icons">add_circle_outline</i></button>
 
+    </form>
+
+    <div class="todos">
+      <ul id="todoList">
+      </ul>
+
+    </div>
+
+    <div class="dialogContainer">
+      <div id="dialog-confirm" title="Confirm Delete?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>This task will be permanently deleted and cannot be recovered. Are you sure?</p>
       </div>
+    </div>
 
-      <div class="dialogContainer">
-        <div id="dialog-confirm" title="Confirm Delete?">
-          <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>This task will be permanently deleted and cannot be recovered. Are you sure?</p>
-        </div>
-      </div>
-
-</body>
+  </div>
+  </body>
 
 </html>

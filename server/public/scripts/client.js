@@ -13,13 +13,13 @@ $(document).ready(function() {
     });
 
     $('#todoList').on('click', '.completeButton', function() {
-        var todoId = $(this).parent().data('id');
+        var todoId = $(this).parent().parent().data('id');
         console.log('Request to complete:', todoId);
         completeTodo(todoId);
     });
 
     $('#todoList').on('click', '.deleteButton', function() {
-        var todoId = $(this).parent().data('id');
+        var todoId = $(this).parent().parent().data('id');
         console.log('Request to delete:', todoId);
         deleteConfirm(todoId);
     });
@@ -113,14 +113,14 @@ $(document).ready(function() {
               }
 
             string += ' data-id=' + todo.id + '>';
-            string += '<h3>';
+            string += '<p>';
             string += '<span>' + currStatus + '</span>';
             string += ' \- ';
             string += todo.description;
-            string += 'Due: <span>' + formattedDate + '</span>, ';
+            string += '&nbsp- Due: <span>' + formattedDate + '</span>';
             string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button>';
             string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
-            string += '</h3>';
+            string += '</p>';
             string += '</div>';
             $("#todoList").append(string);
 

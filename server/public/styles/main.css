@@ -1,9 +1,50 @@
+body {
+  font-family: sans-serif;
+  background-color: black;
+}
+
+h1 {
+  color: lightgrey;
+}
+
+.container {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.addTodo {
+  justify-content: space-around;
+  align-items: stretch;
+  flex-direction: row;
+  margin: 0 10px 10px 10px;
+}
+
+.addTodo input {
+  font-size: 1.1em;
+}
+
+#description {
+  width: 350px;
+  margin-left: 30px;
+}
+
+#dueDate {
+  width: 100px;
+}
+
+#addButton {
+  margin-left: 10px;
+}
+
+#todoList {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .todo {
   background-color: #0dc408;
-  margin: 10px 0;
-  width: 80%;
+  margin: 3px 0;
   padding: 1px 15px;
-  /*box-shadow: 5px 5px 3px grey;*/
 }
 
 .overdueTodo {
@@ -13,7 +54,7 @@
 .closedTodo {
   font-style: italic;
   font-weight: lighter;
-  color: darkgrey;
+  color: #467383;
   background-color: lightgrey;
 }
 
@@ -29,11 +70,15 @@
   visibility: hidden;
 }
 
-button {
+.todo button {
   margin-left: 10px;
   float: right;
 }
 
-i {
-  color: black;
+.deleteButton i {
+  color: #f72a46;
+}
+
+.completeButton i {
+  color: #0dc408;
 }
