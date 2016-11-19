@@ -5,3 +5,12 @@
   padding: 5px 5px 5px 15px;
   box-shadow: 5px 5px 3px grey;
 }
+
+.closedTodo {
+  color: darkgrey;
+  background-color: lightgrey;
+}
+
+.closedTodo .completeButton {
+  visibility: hidden;
+}

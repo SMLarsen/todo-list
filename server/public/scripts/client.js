@@ -99,7 +99,12 @@ $(document).ready(function() {
         todo = todos[i];
         // console.log(todo);
         var string = '';
-        string += '<div class="todo" data-id=' + todo.id + '>';
+        if (todo.status_name === 'Closed') {
+          string += '<div class="todo closedTodo"';
+        } else {
+          string += '<div class="todo"';
+        }
+        string += ' data-id=' + todo.id + '>';
         string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + todo.due_date + '</span>, Status: <span>' + todo.status_name + '</span></p>';
         string += '<button type="button" class="completeButton" name="completeButton">Complete</button>';
         string += '<button type="button" class="deleteButton" name="deleteButton">Delete</button></div>';
