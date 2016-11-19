@@ -83,6 +83,35 @@ router.put('/complete/:id', function(req, res) {
     });
 }); // end route Update todo
 
+// Route: Delay todo
+router.put('/delay/:id/:delay', function(req, res) {
+    var todoId = req.params.id;
+    var delay = req.params.delay;
+    delay = parseInt(delay);
+    console.log('todo to delay: ', todoId, ', by ', delay);
+
+    pg.connect(connectionString, function(err, client, done) {
+        if (err) {
+            console.log('connection error: ', err);
+            res.sendStatus(500);
+        }
+
+        client.query(
+            "UPDATE todos SET due_date = due_date + " + delay + " WHERE id = $1",
+            [todoId],
+            function(err, result) {
+                done();
+
+                if (err) {
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
+                }
+            }
+        );
+    });
+}); // end route Delay todo
+
 // Route: Delete todo
 router.delete('/delete/:id', function(req, res) {
     var todoId = req.params.id;

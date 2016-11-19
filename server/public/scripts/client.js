@@ -18,6 +18,18 @@ $(document).ready(function() {
         completeTodo(todoId);
     });
 
+    $('#todoList').on('click', '.addOneButton', function() {
+        var todoId = $(this).parent().parent().data('id');
+        console.log('Request to delay:', todoId, ' by 1 day');
+        delayTodo(todoId, 1);
+    });
+
+    $('#todoList').on('click', '.addTwoButton', function() {
+        var todoId = $(this).parent().parent().data('id');
+        console.log('Request to delay:', todoId, ' by 2 days');
+        delayTodo(todoId, 2);
+    });
+
     $('#todoList').on('click', '.deleteButton', function() {
         var todoId = $(this).parent().parent().data('id');
         console.log('Request to delete:', todoId);
@@ -77,6 +89,21 @@ $(document).ready(function() {
         });
     } // end function completeTodo
 
+
+    // delay a todo
+    function delayTodo(todoId, delay) {
+        $.ajax({
+            type: 'PUT',
+            url: '/todo/delay/' + todoId + '/' + delay,
+            success: function(result) {
+                getTodo();
+            },
+            error: function(result) {
+                console.log('Unable to delay todo:', todoId);
+            }
+        });
+    } // end function delayTodo
+
     // get all todos
     function getTodo() {
         $.ajax({
@@ -108,7 +135,7 @@ $(document).ready(function() {
                 formattedDate = formatDate(todo.done_date);
                 dueText = "Completed: ";
             } else if (checkOverdue(formattedDate) === true) {
-                console.log(currStatus, checkOverdue(formattedDate));
+                // console.log(currStatus, checkOverdue(formattedDate));
                   currStatus = 'Overdue';
                   string += '<div class="todo overdueTodo"';
                 } else {
@@ -122,6 +149,8 @@ $(document).ready(function() {
             string += todo.description;
             string += '&nbsp-&nbsp' + dueText + '<span>' + formattedDate + '</span>';
             string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button>';
+            string += '<button type="button" class="addTwoButton" name="addTwoButton"><i class="material-icons">exposure_plus_2</i></button>';
+            string += '<button type="button" class="addOneButton" name="addOneButton"><i class="material-icons">exposure_plus_1</i></button>';
             string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
             string += '</p>';
             string += '</div>';
