@@ -1,55 +1,27 @@
 $(document).ready(function() {
     console.log("document ready");
 
-    // $('.input-number').on('click', function (event){
-    //   event.preventDefault();
-    //   num+= $(this).attr("name");
-    //   $('#result').text(num);
-    //   lastResult = "";
-    // });
-    //
-    // $('.operator').on('click', function (event){
-    //   event.preventDefault();
-    //   // console.log('lastResult:', lastResult, 'num:', num, 'cr:', compRequest.x);
-    //   if (compRequest.x === "" || compRequest.x === undefined) {
-    //     if (lastResult === "") {
-    //       compRequest.x = num;
-    //       num = "";
-    //     } else {
-    //       compRequest.x = lastResult;
-    //       lastResult = "";
-    //     }
-    //   }
-    //   calcType = $(this).attr("name").toLowerCase();
-    //   compRequest.type = calcType;
-    //   $('#result').text('');
-    // });
-    //
-    // $('#equals-btn').on('click', function (event){
-    //   event.preventDefault();
-    //   compRequest.y = num;
-    //   putRequest(compRequest);
-    //   compRequest.x = "";
-    //   compRequest.y = "";
-    //   compRequest.type = '';
-    //   num = "";
-    // });
-    //
-    // $('#clear-btn').on('click', function (event){
-    //   event.preventDefault();
-    //   clearInput();
-    // });
-    //
-    // function buildCompRequest(calcType) {
-    //   inputArray = $(".calc-form").serializeArray();
-    //   inputArray.forEach(function (element, index, array) {
-    //     compRequest[element.name] = element.value;
-    //   });
-    //   compRequest.type = calcType;
-    // }
-    //
+
+//=====================  Event Listeners  ===============================
+    $('#addButton').on('click', function (event){
+      event.preventDefault();
+      console.log($(this));
+      getTodo();
+    });
+
+    $('.completeButton').on('click', function (){
+      console.log($(this));
+    });
+
+    $('.deleteButton').on('click', function (){
+      console.log($(this));
+    });
+
+//  =======================  Functions  ==================================
+
     // function putRequest() {
-    //   pathString = '/calc/' + calcType;
+    //   var
+    //   pathString = '/todo';
     //   $.ajax({
     //       type: 'POST',
     //       url: pathString,
@@ -64,22 +36,22 @@ $(document).ready(function() {
     //   });
     // }
     //
-    // function getResponse() {
-    //   $.ajax({
-    //       type: 'GET',
-    //       url: '/calc',
-    //       success: function(data) {
-    //         displayResult(data);
-    //         console.log('data:', data);
-    //         lastResult = data.value;
-    //         console.log('result:', result);
-    //         console.log("Success - GET /calc/add");
-    //       },
-    //       error: function(){
-    //         console.log("Error - GET /calc/add");
-    //       }
-    //   });
-    // }
+    function getTodo() {
+      console.log('getTodo');
+      $.ajax({
+          type: 'GET',
+          url: '/todo',
+          success: function(data) {
+            // displayResult(data);
+            console.log('data:', data);
+            console.log('result:', result);
+            console.log("Success - GET /");
+          },
+          error: function(){
+            console.log("Error - GET /");
+          }
+      });
+    }
     //
     // function displayResult(data) {
     //   $('#result').text(data.value);
