@@ -100,17 +100,30 @@ $(document).ready(function() {
         for (var i = 0; i < todos.length; i++) {
             todo = todos[i];
             var formattedDate = formatDate(todo.due_date);
-
+            var currStatus = todo.status_name;
             var string = '';
-            if (todo.status_name === 'Closed') {
+            if (currStatus === 'Closed') {
                 string += '<div class="todo closedTodo"';
-            } else {
-                string += '<div class="todo"';
-            }
+            } else if (checkOverdue(formattedDate) === true) {
+                console.log(currStatus, checkOverdue(formattedDate));
+                  currStatus = 'Overdue';
+                  string += '<div class="todo overdueTodo"';
+                } else {
+                  string += '<div class="todo"';
+              }
+
             string += ' data-id=' + todo.id + '>';
-            string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + formattedDate + '</span>, Status: <span>' + todo.status_name + '</span></p>';
+            string += '<h2>';
+            string += '<span>' + currStatus + '</span>';
+            string += ' \- ';
+            string += todo.description;
+            string += '</h2>';
+            string += '<p>';
+            string += 'Due: <span>' + formattedDate + '</span>, ';
             string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
-            string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button></div>';
+            string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button>';
+            string += '</p>';
+            string += '</div>';
             $("#todoList").append(string);
 
             // console.log('id: ', $("#todoList").children().last().data('id'));
@@ -154,3 +167,18 @@ function formatDate(date) {
   formattedDate += date.substr(0, 4);
   return formattedDate;
 } //end formatDate
+
+// check if todo is overdue
+function checkOverdue(date) {
+  var today = new Date();
+  var mm = today.getMonth() + 1;
+  var dd = today.getDate();
+  var yyyy = today.getFullYear();
+  if (parseInt(date.substr(6,4)) >= yyyy &&
+    parseInt(date.substr(0,2)) >= mm &&
+    parseInt(date.substr(3,2)) >= dd) {
+      return false;
+    } else {
+      return true;
+    }
+} //end checkOverdue

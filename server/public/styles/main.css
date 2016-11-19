@@ -1,9 +1,13 @@
 .todo {
   background-color: #0ba407;
   margin: 10px 0;
-  width: 40%;
+  width: 60%;
   padding: 5px 5px 10px 15px;
   /*box-shadow: 5px 5px 3px grey;*/
+}
+
+.overdueTodo {
+  background-color: red;
 }
 
 .closedTodo {
@@ -23,6 +27,11 @@
   visibility: hidden;
 }
 
+button {
+  margin-left: 10px;
+  float: right;
+}
+
 i {
-  color: blue;
+  color: black;
 }
