@@ -102,22 +102,25 @@ $(document).ready(function() {
             var formattedDate = formatDate(todo.due_date);
             var currStatus = todo.status_name;
             var string = '';
+            var dueText = "Due: ";
             if (currStatus === 'Closed') {
                 string += '<div class="todo closedTodo"';
+                formattedDate = formatDate(todo.done_date);
+                dueText = "Completed: ";
             } else if (checkOverdue(formattedDate) === true) {
                 console.log(currStatus, checkOverdue(formattedDate));
                   currStatus = 'Overdue';
                   string += '<div class="todo overdueTodo"';
                 } else {
                   string += '<div class="todo"';
-              }
+                }
 
             string += ' data-id=' + todo.id + '>';
             string += '<p>';
             string += '<span>' + currStatus + '</span>';
             string += ' \- ';
             string += todo.description;
-            string += '&nbsp- Due: <span>' + formattedDate + '</span>';
+            string += '&nbsp-&nbsp' + dueText + '<span>' + formattedDate + '</span>';
             string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button>';
             string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
             string += '</p>';
@@ -132,7 +135,6 @@ $(document).ready(function() {
     function addDatePicker() {
         $("#dueDate").datepicker();
     } // end function addDatePicker
-
 
     // add jquery-ui dialog for delete confirmation to DOM
     function deleteConfirm(todoId) {
