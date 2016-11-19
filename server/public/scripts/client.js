@@ -8,40 +8,61 @@ $(document).ready(function() {
     $('#addButton').on('click', function (event){
       event.preventDefault();
       console.log($(this));
+      addTodo();
       getTodo();
     });
 
-    $('.completeButton').on('click', function (){
-      console.log($(this));
+    $('#todoList').on('click','.completeButton', function (){
+      var todoId = $(this).parent().data('id');
+      console.log('Request to complete:', todoId);
       getTodo();
     });
 
-    $('.deleteButton').on('click', function (){
-      console.log($(this));
-      getTodo();
+    $('#todoList').on('click', '.deleteButton', function (){
+      var todoId = $(this).parent().data('id');
+      console.log('Request to delete:', todoId);
+      deleteTodo(todoId);
     });
 
 //  =======================  Functions  ==================================
 
-    // function putRequest() {
-    //   var
-    //   pathString = '/todo';
-    //   $.ajax({
-    //       type: 'POST',
-    //       url: pathString,
-    //       data: compRequest,
-    //       success: function(data) {
-    //         getResponse();
-    //         console.log("Success - POST /calc/add");
-    //       },
-    //       error: function(){
-    //         console.log("Error - POST /calc/add");
-    //       }
-    //   });
-    // }
-    //
+    function addTodo() {
+
+      var todo = {};
+
+      $.each($('.addTodo').serializeArray(), function(i, field) {
+          todo[field.name] = field.value;
+      });
+      console.log(todo);
+      pathString = '/todo';
+      $.ajax({
+          type: 'POST',
+          url: pathString,
+          data: todo,
+          success: function(data) {
+            console.log("Success - POST /todo");
+          },
+          error: function(){
+            console.log("Error - POST /todo");
+          }
+      });
+    }  // end function addTodo
+
+// delete a todo
+    function deleteTodo(todoId) {
+          $.ajax({
+              type: 'DELETE',
+              url: '/todo/delete/' + todoId,
+              success: function(result) {
+                getTodo();
+              },
+              error: function(result) {
+                  console.log('Unable to delete todo:', todoId);
+              }
+          });
+    } // end function deleteTodo
+
     function getTodo() {
-      console.log('getTodo');
       $.ajax({
           type: 'GET',
           url: '/todo',
@@ -54,7 +75,7 @@ $(document).ready(function() {
             console.log("Error - GET /");
           }
       });
-    }
+    }  // end function getTodo
 
     function buildTodoList(todos) {
       $("#todoList").empty();
@@ -62,29 +83,18 @@ $(document).ready(function() {
         todo = todos[i];
         // console.log(todo);
         var string = '';
-        string += '<div class="todo"><h2>' + todo.description + '</h2><p>Date Due: <span>' + todo.due_date + '</span>, Status: <span>' + todo.status_name + '</span></p>';
+        string += '<div class="todo" data-id=' + todo.id + '>';
+        string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + todo.due_date + '</span>, Status: <span>' + todo.status_name + '</span></p>';
         string += '<button type="button" class="completeButton" name="completeButton">Complete</button>';
         string += '<button type="button" class="deleteButton" name="deleteButton">Delete</button></div>';
         $("#todoList").append(string);
+
+        // console.log('id: ', $("#todoList").children().last().data('id'));
       }
-    }
-
-
-    //
-    // function displayResult(data) {
-    //   $('#result').text(data.value);
-    // }
-    //
-    // function clearInput() {
-    //   $('#result').text("");
-    //   num = "";
-    //   compRequest.x = "";
-    //   compRequest.y = "";
-    //   compRequest.type = '';
-    // }
+    }  // end function buildTodoList
 
     function addDatePicker() {
       $("#dueDate").datepicker();
-    }
+    } // end function addDatePicker
 
 });
