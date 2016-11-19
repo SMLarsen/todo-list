@@ -1,9 +1,9 @@
 .todo {
   background-color: #0ba407;
   margin: 10px 0;
-  width: 20%;
-  padding: 5px 5px 5px 15px;
-  box-shadow: 5px 5px 3px grey;
+  width: 40%;
+  padding: 5px 5px 10px 15px;
+  /*box-shadow: 5px 5px 3px grey;*/
 }
 
 .closedTodo {
@@ -17,4 +17,12 @@
 
 .no-close .ui-dialog-titlebar-close {
   display: none;
+}
+
+.dialogContainer {
+  visibility: hidden;
+}
+
+i {
+  color: blue;
 }

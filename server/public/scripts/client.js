@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#todoList').on('click', '.completeButton', function() {
         var todoId = $(this).parent().data('id');
         console.log('Request to complete:', todoId);
-        completeTodo();
+        completeTodo(todoId);
     });
 
     $('#todoList').on('click', '.deleteButton', function() {
@@ -41,6 +41,7 @@ $(document).ready(function() {
             data: todo,
             success: function(data) {
                 console.log("Success - POST /todo");
+                getTodo();
             },
             error: function() {
                 console.log("Error - POST /todo");
@@ -108,8 +109,8 @@ $(document).ready(function() {
             }
             string += ' data-id=' + todo.id + '>';
             string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + formattedDate + '</span>, Status: <span>' + todo.status_name + '</span></p>';
-            string += '<button type="button" class="completeButton" name="completeButton">Complete</button>';
-            string += '<button type="button" class="deleteButton" name="deleteButton">Delete</button></div>';
+            string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
+            string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button></div>';
             $("#todoList").append(string);
 
             // console.log('id: ', $("#todoList").children().last().data('id'));

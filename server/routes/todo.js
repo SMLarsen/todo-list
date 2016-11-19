@@ -40,7 +40,7 @@ router.get('/', function(req, res) {
         }
 
         client.query(
-            'SELECT * FROM todos JOIN status ON todos.status_name = status.name ORDER BY status.sort_order',
+            'SELECT * FROM todos JOIN status ON todos.status_name = status.name ORDER BY status.sort_order, due_date',
             function(err, result) {
                 done(); // close the connection.
 
@@ -57,7 +57,7 @@ router.get('/', function(req, res) {
 }); // end route Read todo list
 
 // Route: Update todo
-router.delete('/complete/:id', function(req, res) {
+router.put('/complete/:id', function(req, res) {
     var todoId = req.params.id;
     // todoId = parseInt(todoId);
     console.log('todo to complete: ', todoId);
