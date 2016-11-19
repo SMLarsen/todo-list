@@ -95,9 +95,11 @@ $(document).ready(function() {
     // build the todo list
     function buildTodoList(todos) {
         $("#todoList").empty();
+        var todo = {};
         for (var i = 0; i < todos.length; i++) {
             todo = todos[i];
-            // console.log(todo);
+            var formattedDate = formatDate(todo.due_date);
+
             var string = '';
             if (todo.status_name === 'Closed') {
                 string += '<div class="todo closedTodo"';
@@ -105,7 +107,7 @@ $(document).ready(function() {
                 string += '<div class="todo"';
             }
             string += ' data-id=' + todo.id + '>';
-            string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + todo.due_date + '</span>, Status: <span>' + todo.status_name + '</span></p>';
+            string += '<h2>' + todo.description + '</h2><p>Date Due: <span>' + formattedDate + '</span>, Status: <span>' + todo.status_name + '</span></p>';
             string += '<button type="button" class="completeButton" name="completeButton">Complete</button>';
             string += '<button type="button" class="deleteButton" name="deleteButton">Delete</button></div>';
             $("#todoList").append(string);
@@ -126,7 +128,7 @@ $(document).ready(function() {
             $("#dialog-confirm").dialog({
                 resizable: false,
                 height: "auto",
-                width: 400,
+                width: 270,
                 modal: true,
                 dialogClass: "no-close",
                 buttons: {
@@ -142,4 +144,12 @@ $(document).ready(function() {
         });
     } // end function deleteConfirm
 
-});
+}); // end Document Ready
+
+// reformat dates
+function formatDate(date) {
+  var formattedDate = date.substr(5, 2) + '/';
+  formattedDate += date.substr(8, 2) + '/';
+  formattedDate += date.substr(0, 4);
+  return formattedDate;
+} //end formatDate
