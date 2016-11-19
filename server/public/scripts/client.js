@@ -113,16 +113,14 @@ $(document).ready(function() {
               }
 
             string += ' data-id=' + todo.id + '>';
-            string += '<h2>';
+            string += '<h3>';
             string += '<span>' + currStatus + '</span>';
             string += ' \- ';
             string += todo.description;
-            string += '</h2>';
-            string += '<p>';
             string += 'Due: <span>' + formattedDate + '</span>, ';
-            string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
             string += '<button type="button" class="deleteButton" name="deleteButton"><i class="material-icons">remove_circle_outline</i></button>';
-            string += '</p>';
+            string += '<button type="button" class="completeButton" name="completeButton"><i class="material-icons">done</i></button>';
+            string += '</h3>';
             string += '</div>';
             $("#todoList").append(string);
 
@@ -159,6 +157,8 @@ $(document).ready(function() {
     } // end function deleteConfirm
 
 }); // end Document Ready
+
+// =================  Utility Functions  ================
 
 // reformat dates
 function formatDate(date) {
