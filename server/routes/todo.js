@@ -57,8 +57,31 @@ router.get('/', function(req, res) {
 }); // end route Read todo list
 
 // Route: Update todo
-router.put('/', function(req, res) {
-    console.log('put /');
+router.delete('/complete/:id', function(req, res) {
+    var todoId = req.params.id;
+    // todoId = parseInt(todoId);
+    console.log('todo to complete: ', todoId);
+
+    pg.connect(connectionString, function(err, client, done) {
+      if (err) {
+          console.log('connection error: ', err);
+          res.sendStatus(500);
+      }
+
+      client.query(
+          "UPDATE todos SET done_date = CURRENT_DATE, status_name = 'Closed' WHERE id = $1",
+          [todoId],
+          function(err, result) {
+              done();
+
+              if (err) {
+                  res.sendStatus(500);
+              } else {
+                  res.sendStatus(200);
+              }
+          }
+      );
+  });
 }); // end route Update todo
 
 // Route: Delete todo
@@ -75,8 +98,7 @@ router.delete('/delete/:id', function(req, res) {
         }
 
         client.query(
-            'DELETE FROM todos WHERE id = $1',
-            [todoId],
+            'DELETE FROM todos WHERE id = $1', [todoId],
             function(err, result) {
                 done();
 
@@ -88,7 +110,6 @@ router.delete('/delete/:id', function(req, res) {
             }
         );
     });
-
 }); // end route Delete todo
 
 

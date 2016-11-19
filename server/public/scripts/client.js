@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#todoList').on('click','.completeButton', function (){
       var todoId = $(this).parent().data('id');
       console.log('Request to complete:', todoId);
-      getTodo();
+      completeTodo();
     });
 
     $('#todoList').on('click', '.deleteButton', function (){
@@ -26,6 +26,7 @@ $(document).ready(function() {
 
 //  =======================  Functions  ==================================
 
+// add a todo
     function addTodo() {
 
       var todo = {};
@@ -34,10 +35,9 @@ $(document).ready(function() {
           todo[field.name] = field.value;
       });
       console.log(todo);
-      pathString = '/todo';
       $.ajax({
           type: 'POST',
-          url: pathString,
+          url: '/todo',
           data: todo,
           success: function(data) {
             console.log("Success - POST /todo");
@@ -62,6 +62,21 @@ $(document).ready(function() {
           });
     } // end function deleteTodo
 
+    // complete a todo
+    function completeTodo(todoId) {
+          $.ajax({
+              type: 'PUT',
+              url: '/todo/complete/' + todoId,
+              success: function(result) {
+                getTodo();
+              },
+              error: function(result) {
+                  console.log('Unable to complete todo:', todoId);
+              }
+          });
+    } // end function completeTodo
+
+// get all todos
     function getTodo() {
       $.ajax({
           type: 'GET',
@@ -77,6 +92,7 @@ $(document).ready(function() {
       });
     }  // end function getTodo
 
+// build the todo list
     function buildTodoList(todos) {
       $("#todoList").empty();
       for (var i = 0; i < todos.length; i++) {
@@ -93,6 +109,7 @@ $(document).ready(function() {
       }
     }  // end function buildTodoList
 
+// add jquery-ui datepicker to DOM
     function addDatePicker() {
       $("#dueDate").datepicker();
     } // end function addDatePicker
