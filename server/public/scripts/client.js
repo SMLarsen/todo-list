@@ -1,6 +1,7 @@
 $(document).ready(function() {
     console.log("document ready");
 
+    addDatePicker();
     getTodo();
 
 //=====================  Event Listeners  ===============================
@@ -59,7 +60,7 @@ $(document).ready(function() {
       $("#todoList").empty();
       for (var i = 0; i < todos.length; i++) {
         todo = todos[i];
-        console.log(todo);
+        // console.log(todo);
         var string = '';
         string += '<div class="todo"><h2>' + todo.description + '</h2><p>Date Due: <span>' + todo.due_date + '</span>, Status: <span>' + todo.status_name + '</span></p>';
         string += '<button type="button" class="completeButton" name="completeButton">Complete</button>';
@@ -81,5 +82,9 @@ $(document).ready(function() {
     //   compRequest.y = "";
     //   compRequest.type = '';
     // }
+
+    function addDatePicker() {
+      $("#dueDate").datepicker();
+    }
 
 });

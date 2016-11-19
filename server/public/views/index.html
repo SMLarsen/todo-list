@@ -5,6 +5,13 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="../assets/vendors/jquery.min.js"></script>
     <script type="text/javascript" src="./scripts/client.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="./styles/main.css" />
     <title>Weekend 4 Challenge</title>
 </head>
@@ -14,7 +21,7 @@
 
       <form class="addTodo" action="index.html" method="post">
         <input type="text" name="todoDescription" value="Description">
-        <input type="date" name="dueDate" value="Date Due">
+        <input type="text" id="dueDate" name="dueDate" value="Date Due">
         <input type="button" id="addButton" name="addButton" value="Add">
       </form>
 
