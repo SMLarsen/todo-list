@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/stevelarsen';
+var connectionString = 'postgres://localhost:5432/sigma';
 
 // Route: Create todo
 router.post('/', function(req, res) {
