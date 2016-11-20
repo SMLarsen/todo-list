@@ -20,7 +20,7 @@ h1 {
 }
 
 .addTodo input {
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 #description {
@@ -30,6 +30,7 @@ h1 {
 
 #dueDate {
   width: 100px;
+  text-align: center;
 }
 
 #todoList {
